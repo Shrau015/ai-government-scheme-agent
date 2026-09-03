@@ -278,15 +278,14 @@ def render_chat_message(message, index):
     role = message["role"]
 
     if role == "user":
-        left, right = st.columns([1, 3])
-        with right:
+        left, right = st.columns([3, 1])
+        with left:
             with st.container(border=True):
                 st.caption("You")
                 st.write(message["content"])
-
     else:
-        left, right = st.columns([3, 1])
-        with left:
+        left, right = st.columns([1, 3])
+        with right:
             with st.container(border=True):
                 st.caption("AI Government Scheme Agent")
                 st.write(message["content"])
@@ -294,7 +293,7 @@ def render_chat_message(message, index):
                 for scheme_index, scheme in enumerate(message.get("schemes", [])):
                     show_scheme_card(scheme, f"chat_{index}_{scheme_index}")
 
-                    
+
 def add_chat_exchange(question, schemes, profile_matches):
     reply = build_assistant_reply(question, schemes, profile_matches)
 
